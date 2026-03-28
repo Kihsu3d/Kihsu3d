@@ -96,10 +96,7 @@
                 var(--bg-dark);
         }
 
-        .hero-content {
-            max-width: 900px;
-            animation: slideUp 1s ease-out;
-        }
+        .hero-content { max-width: 900px; animation: slideUp 1s ease-out; }
 
         .hero-badge {
             display: inline-block;
@@ -135,12 +132,7 @@
             line-height: 1.6;
         }
 
-        .hero-cta {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero-cta { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
         .btn {
             padding: 16px 40px;
@@ -161,20 +153,14 @@
             color: #fff;
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
         }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.5);
-        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(0, 240, 255, 0.5); }
 
         .btn-outline {
             background: transparent;
             border: 1px solid var(--accent-cyan);
             color: var(--accent-cyan);
         }
-        .btn-outline:hover {
-            background: rgba(0, 240, 255, 0.1);
-            transform: translateY(-3px);
-        }
+        .btn-outline:hover { background: rgba(0, 240, 255, 0.1); transform: translateY(-3px); }
 
         .features {
             padding: 100px 60px;
@@ -193,65 +179,19 @@
             text-align: center;
             transition: all 0.3s;
         }
-        .feature-card:hover {
-            border-color: var(--accent-cyan);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.1);
-        }
-
+        .feature-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0, 240, 255, 0.1); }
         .feature-icon { font-size: 3rem; margin-bottom: 20px; }
-        .feature-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--accent-cyan);
-        }
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
+        .feature-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; color: var(--accent-cyan); }
+        .feature-card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; }
 
-        /* CATEGORIES */
-        .categories {
-            padding: 100px 60px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
+        .categories { padding: 100px 60px; max-width: 1300px; margin: 0 auto; }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
-        }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; margin-bottom: 15px; }
+        .section-header p { color: var(--text-secondary); font-size: 1.15rem; }
+        .accent-line { width: 80px; height: 3px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta)); margin: 20px auto 0; border-radius: 2px; }
 
-        .section-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-        }
-
-        .accent-line {
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
-            margin: 20px auto 0;
-            border-radius: 2px;
-        }
-
-        .category-tabs {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 50px;
-        }
+        .category-tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 50px; }
 
         .category-tab {
             padding: 12px 28px;
@@ -266,29 +206,12 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+        .category-tab:hover, .category-tab.active { border-color: var(--accent-cyan); color: var(--accent-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
 
-        .category-tab:hover,
-        .category-tab.active {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-        }
+        .category-section { display: none; }
+        .category-section.active { display: block; }
 
-        .category-section {
-            display: none;
-        }
-
-        .category-section.active {
-            display: block;
-        }
-
-        .subcategories {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-            justify-content: center;
-        }
+        .subcategories { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; }
 
         .subcategory-btn {
             padding: 8px 20px;
@@ -302,26 +225,12 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+        .subcategory-btn:hover, .subcategory-btn.active { border-color: var(--accent-magenta); color: var(--accent-magenta); }
 
-        .subcategory-btn:hover,
-        .subcategory-btn.active {
-            border-color: var(--accent-magenta);
-            color: var(--accent-magenta);
-        }
+        .subcategory-section { display: none; }
+        .subcategory-section.active { display: block; }
 
-        .subcategory-section {
-            display: none;
-        }
-
-        .subcategory-section.active {
-            display: block;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
 
         .product-card {
             background: var(--bg-card);
@@ -330,50 +239,15 @@
             overflow: hidden;
             transition: all 0.4s;
         }
-        .product-card:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.15);
-            transform: translateY(-8px);
-        }
+        .product-card:hover { border-color: var(--accent-cyan); box-shadow: 0 0 40px rgba(0, 240, 255, 0.15); transform: translateY(-8px); }
 
-        .product-image {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            cursor: zoom-in;
-        }
+        .product-image { width: 100%; height: 260px; object-fit: cover; background: linear-gradient(135deg, #1a1a2e, #16213e); cursor: zoom-in; }
 
-        .product-info {
-            padding: 25px;
-        }
-
-        .product-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .product-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--accent-cyan);
-        }
+        .product-info { padding: 25px; }
+        .product-info h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+        .product-info p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; }
+        .product-price { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); }
 
         .btn-sm {
             padding: 8px 20px;
@@ -389,220 +263,44 @@
             text-transform: uppercase;
             transition: all 0.3s;
         }
-        .btn-sm:hover {
-            background: var(--accent-cyan);
-            color: #000;
-        }
+        .btn-sm:hover { background: var(--accent-cyan); color: #000; }
 
-        /* HOW */
-        .how {
-            padding: 100px 60px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        .how { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
+        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+        .how-step { text-align: center; padding: 30px; }
+        .how-num { width: 70px; height: 70px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--accent-cyan); margin: 0 auto 20px; }
+        .how-step h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 10px; color: var(--accent-cyan); }
+        .how-step p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
 
-        .how-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
+        .about { padding: 100px 60px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; text-align: left; margin-top: 60px; }
+        .about-item h4 { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; color: var(--accent-cyan); margin-bottom: 8px; letter-spacing: 2px; text-transform: uppercase; }
+        .about-item p { color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem; }
 
-        .how-step {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .how-num {
-            width: 70px; height: 70px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--accent-cyan);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            margin: 0 auto 20px;
-        }
-
-        .how-step h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: var(--accent-cyan);
-        }
-
-        .how-step p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* ABOUT */
-        .about {
-            padding: 100px 60px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            text-align: left;
-            margin-top: 60px;
-        }
-
-        .about-item h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            color: var(--accent-cyan);
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .about-item p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        /* CONTACT */
-        .contact {
-            padding: 100px 60px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 50px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.05rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
+        .contact { padding: 100px 60px; max-width: 700px; margin: 0 auto; }
+        .contact-form { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 50px; }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 20px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-cyan); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
         .contact-form .btn { width: 100%; text-align: center; }
 
-        footer {
-            padding: 40px 60px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
+        footer { padding: 40px 60px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-secondary); font-size: 0.9rem; }
+        footer .logo { font-size: 1.3rem; margin-bottom: 15px; display: inline-block; }
 
-        footer .logo {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         /* IMAGE MODAL */
-        .img-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.92);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+        .img-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.92); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
         .img-modal.open { display: flex; }
-        .img-modal img {
-            max-width: 100%;
-            max-height: 92vh;
-            object-fit: contain;
-            border-radius: 16px;
-            box-shadow: 0 0 60px rgba(0,240,255,0.2);
-        }
-        .img-modal-close {
-            position: absolute;
-            top: 20px; right: 20px;
-            width: 44px; height: 44px;
-            background: var(--accent-cyan);
-            color: #000;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.3rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .img-modal-info {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(18,18,26,0.95);
-            border: 1px solid rgba(0,240,255,0.3);
-            border-radius: 12px;
-            padding: 15px 30px;
-            text-align: center;
-            white-space: nowrap;
-        }
-        .img-modal-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: var(--accent-cyan);
-            margin-bottom: 4px;
-        }
+        .img-modal img { max-width: 100%; max-height: 92vh; object-fit: contain; border-radius: 16px; box-shadow: 0 0 60px rgba(0,240,255,0.2); }
+        .img-modal-close { position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; background: var(--accent-cyan); color: #000; border: none; border-radius: 50%; font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .img-modal-info { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(18,18,26,0.95); border: 1px solid rgba(0,240,255,0.3); border-radius: 12px; padding: 15px 30px; text-align: center; white-space: nowrap; }
+        .img-modal-info h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; color: var(--accent-cyan); margin-bottom: 4px; }
         .img-modal-info p { font-size: 0.9rem; color: var(--text-secondary); }
 
-        /* LOADING STATE */
-        .loading-msg {
-            color: var(--text-secondary);
-            text-align: center;
-            padding: 60px;
-        }
+        .loading-msg { color: var(--text-secondary); text-align: center; padding: 60px; font-size: 1rem; }
 
         @media (max-width: 768px) {
             nav { padding: 15px 25px; }
@@ -628,13 +326,11 @@
             </ul>
         </nav>
 
-        <!-- HERO -->
         <section class="hero" id="inicio">
             <div class="hero-content">
                 <div class="hero-badge">✨ Ilustraciones impresas en 3D con relieve real</div>
                 <h1>Láminas 3D que<br><span class="gradient">transforman tu hogar</span></h1>
-                <p>Diseños únicos fabricados con la última tecnología de impresión 3D. 
-                Ilustraciones con relieve real para tu hogar, oficina o negocio.</p>
+                <p>Diseños únicos fabricados con la última tecnología de impresión 3D. Ilustraciones con relieve real para tu hogar, oficina o negocio.</p>
                 <div class="hero-cta">
                     <a href="#productos" class="btn btn-primary">Ver colección</a>
                     <a href="#contacto" class="btn btn-outline">Pedir presupuesto</a>
@@ -642,31 +338,13 @@
             </div>
         </section>
 
-        <!-- FEATURES -->
         <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Alta Resolución</h3>
-                <p>Impresión en 3D de precisión con detalles nítidos y acabados suaves.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎨</div>
-                <h3>Tu Diseño</h3>
-                <p>Envíanos tu ilustración y la convertimos en una pieza 3D única.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Envío Rápido</h3>
-                <p>Fabricación y envío en tiempo récord. Tu pedido en tus manos pronto.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌱</div>
-                <h3>Materiales Eco</h3>
-                <p>Filamentos biodegradables y responsables con el medio ambiente.</p>
-            </div>
+            <div class="feature-card"><div class="feature-icon">⚡</div><h3>Alta Resolución</h3><p>Impresión en 3D de precisión con detalles nítidos y acabados suaves.</p></div>
+            <div class="feature-card"><div class="feature-icon">🎨</div><h3>Tu Diseño</h3><p>Envíanos tu ilustración y la convertimos en una pieza 3D única.</p></div>
+            <div class="feature-card"><div class="feature-icon">🚀</div><h3>Envío Rápido</h3><p>Fabricación y envío en tiempo récord. Tu pedido en tus manos pronto.</p></div>
+            <div class="feature-card"><div class="feature-icon">🌱</div><h3>Materiales Eco</h3><p>Filamentos biodegradables y responsables con el medio ambiente.</p></div>
         </section>
 
-        <!-- PRODUCTS -->
         <section class="categories" id="productos">
             <div class="section-header">
                 <h2>Nuestros Productos</h2>
@@ -674,7 +352,6 @@
                 <div class="accent-line"></div>
             </div>
 
-            <!-- Category Tabs -->
             <div class="category-tabs">
                 <button class="category-tab active" onclick="showCategory('laminas3d', this)">Láminas 3D</button>
                 <button class="category-tab" onclick="showCategory('llaveros', this)">Llaveros Personalizados</button>
@@ -682,7 +359,7 @@
                 <button class="category-tab" onclick="showCategory('laminaspersonal', this)">Láminas Personalizadas</button>
             </div>
 
-            <!-- LAMINAS 3D -->
+            <!-- LÁMINAS 3D -->
             <div class="category-section active" id="laminas3d">
                 <div class="subcategories">
                     <button class="subcategory-btn active" onclick="showSubcat('laminas3d','anime', this)">Anime</button>
@@ -692,7 +369,6 @@
                     <button class="subcategory-btn" onclick="showSubcat('laminas3d','series', this)">Series</button>
                     <button class="subcategory-btn" onclick="showSubcat('laminas3d','videojuegos', this)">Videojuegos</button>
                 </div>
-
                 <div class="subcategory-section active" id="laminas3d-anime"><p class="loading-msg">Cargando...</p></div>
                 <div class="subcategory-section" id="laminas3d-kpop"><p class="loading-msg">Cargando...</p></div>
                 <div class="subcategory-section" id="laminas3d-peliculas"><p class="loading-msg">Cargando...</p></div>
@@ -717,7 +393,6 @@
             </div>
         </section>
 
-        <!-- HOW -->
         <section class="how" id="como">
             <div class="section-header">
                 <h2>Cómo funciona</h2>
@@ -725,25 +400,12 @@
                 <div class="accent-line"></div>
             </div>
             <div class="how-grid">
-                <div class="how-step">
-                    <div class="how-num">1</div>
-                    <h3>Elige o diseña</h3>
-                    <p>Selecciona una ilustración de nuestra colección o envianos tu diseño propio.</p>
-                </div>
-                <div class="how-step">
-                    <div class="how-num">2</div>
-                    <h3>Imprimimos en 3D</h3>
-                    <p>Tu diseño se imprime con relieve real usando filamento premium de alta precisión.</p>
-                </div>
-                <div class="how-step">
-                    <div class="how-num">3</div>
-                    <h3>Lo recibes en casa</h3>
-                    <p>Te lo enviamos listo para colgar. Empaquetado con cuidado y envío rápido.</p>
-                </div>
+                <div class="how-step"><div class="how-num">1</div><h3>Elige o diseña</h3><p>Selecciona una ilustración o envíanos tu diseño propio.</p></div>
+                <div class="how-step"><div class="how-num">2</div><h3>Imprimimos en 3D</h3><p>Tu diseño se imprime con relieve real usando filamento premium.</p></div>
+                <div class="how-step"><div class="how-num">3</div><h3>Lo recibes en casa</h3><p>Te lo enviamos listo para colgar. Empaquetado con cuidado.</p></div>
             </div>
         </section>
 
-        <!-- ABOUT -->
         <section class="about" id="nosotros">
             <div class="section-header">
                 <h2>Kihsu3D</h2>
@@ -751,26 +413,13 @@
                 <div class="accent-line"></div>
             </div>
             <div class="about-grid">
-                <div class="about-item">
-                    <h4>Nuestra Misión</h4>
-                    <p>Democratizar el acceso a piezas de decoración fabricadas con tecnología 3D de alta calidad. Cada pieza que sale de Kihsu3D está pensada para transformar espacios.</p>
-                </div>
-                <div class="about-item">
-                    <h4>Tecnología</h4>
-                    <p>Utilizamos impresoras 3D FDM de alta resolución con filamentos premium. Esto nos permite conseguir acabados superiores y precisión en cada capa de impresión.</p>
-                </div>
-                <div class="about-item">
-                    <h4>Personalización</h4>
-                    <p>¿Tienes un diseño propio? ¿Quieres un tamaño diferente? Contáctanos y lo fabricamos a tu medida. La personalización es nuestro fuerte.</p>
-                </div>
-                <div class="about-item">
-                    <h4>Envíos</h4>
-                    <p>Enviamos a toda España y Europa. Cada pieza va empaquetada con materiales protectores para que llegue perfecta a tu puerta.</p>
-                </div>
+                <div class="about-item"><h4>Nuestra Misión</h4><p>Democratizar el acceso a piezas de decoración fabricadas con tecnología 3D de alta calidad.</p></div>
+                <div class="about-item"><h4>Tecnología</h4><p>Utilizamos impresoras 3D FDM de alta resolución con filamentos premium.</p></div>
+                <div class="about-item"><h4>Personalización</h4><p>¿Tienes un diseño propio? Contáctanos y lo fabricamos a tu medida.</p></div>
+                <div class="about-item"><h4>Envíos</h4><p>Enviamos a toda España y Europa. Cada pieza va empaquetada con cuidado.</p></div>
             </div>
         </section>
 
-        <!-- CONTACT -->
         <section class="contact" id="contacto">
             <div class="section-header">
                 <h2>Contacta con Nosotros</h2>
@@ -779,22 +428,10 @@
             </div>
             <div class="contact-form">
                 <form>
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" placeholder="Tu nombre">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="tu@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp</label>
-                        <input type="tel" placeholder="+34 600 000 000">
-                    </div>
-                    <div class="form-group">
-                        <label>Mensaje</label>
-                        <textarea placeholder="Cuéntame qué lámina 3D necesitas, si tienes diseño propio, medidas o cantidades..."></textarea>
-                    </div>
+                    <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+                    <div class="form-group"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+                    <div class="form-group"><label>WhatsApp</label><input type="tel" placeholder="+34 600 000 000"></div>
+                    <div class="form-group"><label>Mensaje</label><textarea placeholder="Cuéntame qué necesitas..."></textarea></div>
                     <button type="submit" class="btn btn-primary">Enviar mensaje</button>
                 </form>
             </div>
@@ -803,7 +440,7 @@
         <footer>
             <div class="logo">KIHSU<span>3D</span></div>
             <p>© 2026 Kihsu3D — Ilustraciones impresas en 3D</p>
-            <p style="margin-top:10px; font-size:0.8rem;">Tu idea, nuestra tecnología. Del diseño a tu pared.</p>
+            <p style="margin-top:10px; font-size:0.8rem;">Tu idea, nuestra tecnología.</p>
         </footer>
     </div>
 
@@ -815,101 +452,64 @@
     </div>
 
     <script>
-    // REPLACE WITH YOUR GITHUB USERNAME
-    const GITHUB_USER = 'Kihsu3d';
-    const REPO = 'kihsu3d';
-    const BRANCH = 'main';
-    const BASE_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO}/${BRANCH}/content`;
+    const GITHUB_API = 'https://api.github.com/repos/Kihsu3d/Kihsu3d/contents/content';
 
-    async function loadProducts() {
-        const categories = ['anime','kpop','peliculas','musica','series','videojuegos'];
-        for (const cat of categories) {
-            try {
-                const res = await fetch(`${BASE_URL}/${cat}/`);
-                if (!res.ok) throw new Error();
-                const text = await res.text();
-                // Parse directory listing or JSON
-                let products;
-                try { products = JSON.parse(text); } catch { products = parseMarkdownDir(text, cat); }
-                renderCategory(cat, products);
-            } catch(e) {
-                // Try fetching individual files
-                await loadCategoryFiles(cat);
-            }
-        }
-
-        // Other categories
-        await loadCategoryFiles('llaveros');
-        await loadCategoryFiles('figuras');
-        await loadCategoryFiles('laminaspersonal');
-    }
-
-    async function loadCategoryFiles(cat) {
-        const el = document.getElementById(cat + '-content');
-        if (!el) return;
-        el.innerHTML = '<p class="loading-msg">Cargando...</p>';
+    async function loadCategory(folder) {
+        const el = document.getElementById(folder + '-content');
+        if (el) el.innerHTML = '<p class="loading-msg">Cargando...</p>';
         try {
-            const res = await fetch(`${BASE_URL}/${cat}/`);
+            const res = await fetch(GITHUB_API + '/' + folder);
             if (!res.ok) throw new Error();
-            const text = await res.text();
-            let products;
-            try { products = JSON.parse(text); } catch { products = []; }
-            renderPlainGrid(cat, products);
+            const files = await res.json();
+            if (!Array.isArray(files) || files.length === 0) {
+                if (el) el.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="subir.html" style="color:var(--accent-cyan);">Sube uno →</a></p>';
+                return;
+            }
+            const products = [];
+            for (const file of files) {
+                if (!file.name.endsWith('.md')) continue;
+                try {
+                    const fileRes = await fetch(file.download_url);
+                    const text = await fileRes.text();
+                    const match = text.match(/name:\s*"?([^"\n]+)"?/i);
+                    const priceMatch = text.match(/price:\s*"?([^"\n]+)"?/i);
+                    const imgMatch = text.match(/image:\s*"?([^"\n]+)"?/i);
+                    if (imgMatch) {
+                        products.push({
+                            name: match ? match[1].trim() : file.name.replace('.md',''),
+                            price: priceMatch ? priceMatch[1].trim() : '',
+                            image: imgMatch[1].trim()
+                        });
+                    }
+                } catch(e) {}
+            }
+            renderProducts(folder, products);
         } catch(e) {
-            el.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="/admin/" style="color:var(--accent-cyan);">Añádelos desde el CMS →</a></p>';
+            if (el) el.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="subir.html" style="color:var(--accent-cyan);">Sube uno →</a></p>';
         }
     }
 
-    function renderCategory(cat, products) {
-        const container = document.getElementById('laminas3d-' + cat);
-        if (!container) return;
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="/admin/" style="color:var(--accent-cyan);">Añádelos desde el CMS →</a></p>';
-            return;
-        }
+    function renderProducts(folder, products) {
         let html = '<div class="product-grid">';
+        if (products.length === 0) {
+            html += '<p class="loading-msg">No hay productos aún. <a href="subir.html" style="color:var(--accent-cyan);">Sube uno →</a></p>';
+        }
         products.forEach(p => {
-            if (!p.image) return;
             html += `
             <div class="product-card">
-                <img class="product-image" src="${p.image}" alt="${p.name || cat}" onclick="openImgModal('${p.image}','${p.name || cat}','${p.price || ''}')">
+                <img class="product-image" src="${p.image}" alt="${p.name}" onclick="openImgModal('${p.image}','${p.name}','${p.price}')" onerror="this.style.display='none'">
                 <div class="product-info">
-                    <h3>${p.name || cat}</h3>
+                    <h3>${p.name}</h3>
                     <div class="product-footer">
                         ${p.price ? `<span class="product-price">€${p.price}</span>` : ''}
-                        <button class="btn-sm" onclick="alert('Escríbenos a nuestro WhatsApp para pedir este producto')">Pedir</button>
+                        <button class="btn-sm" onclick="alert('Escríbenos para pedir este producto')">Pedir</button>
                     </div>
                 </div>
             </div>`;
         });
         html += '</div>';
-        container.innerHTML = html;
-    }
-
-    function renderPlainGrid(cat, products) {
-        const el = document.getElementById(cat + '-content');
-        if (!el) return;
-        if (!products || products.length === 0) {
-            el.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="/admin/" style="color:var(--accent-cyan);">Añádelos desde el CMS →</a></p>';
-            return;
-        }
-        let html = '<div class="product-grid">';
-        products.forEach(p => {
-            if (!p.image) return;
-            html += `
-            <div class="product-card">
-                <img class="product-image" src="${p.image}" alt="${p.name || cat}" onclick="openImgModal('${p.image}','${p.name || cat}','${p.price || ''}')">
-                <div class="product-info">
-                    <h3>${p.name || cat}</h3>
-                    <div class="product-footer">
-                        ${p.price ? `<span class="product-price">€${p.price}</span>` : ''}
-                        <button class="btn-sm" onclick="alert('Escríbenos a nuestro WhatsApp para pedir este producto')">Pedir</button>
-                    </div>
-                </div>
-            </div>`;
-        });
-        html += '</div>';
-        el.innerHTML = html;
+        const el = document.getElementById(folder + '-content');
+        if (el) el.innerHTML = html;
     }
 
     function showCategory(name, btn) {
@@ -917,6 +517,8 @@
         document.querySelectorAll('.category-tab').forEach(el => el.classList.remove('active'));
         document.getElementById(name).classList.add('active');
         btn.classList.add('active');
+        if (name === 'laminas3d') loadCategory('anime');
+        else loadCategory(name);
     }
 
     function showSubcat(cat, sub, btn) {
@@ -925,6 +527,7 @@
         catEl.querySelectorAll('.subcategory-btn').forEach(el => el.classList.remove('active'));
         catEl.querySelector('#' + cat + '-' + sub).classList.add('active');
         btn.classList.add('active');
+        loadCategory(sub);
     }
 
     function openImgModal(src, name, price) {
@@ -941,7 +544,8 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', loadProducts);
+    // Init: load anime by default
+    loadCategory('anime');
     </script>
 </body>
 </html>

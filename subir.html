@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Kihsu3D — Subir Producto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #12121a;
+            --cyan: #00f0ff;
+            --magenta: #ff00aa;
+            --text: #fff;
+            --text2: #8a8a9a;
+            --border: rgba(255,255,255,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--cyan);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        .form-group { margin-bottom: 25px; }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text2);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+        }
+        select:focus, input:focus { outline: none; border-color: var(--cyan); }
+        .drop-zone {
+            border: 2px dashed rgba(0,240,255,0.3);
+            border-radius: 16px;
+            padding: 50px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 25px;
+        }
+        .drop-zone:hover { border-color: var(--cyan); background: rgba(0,240,255,0.05); }
+        .drop-zone .icon { font-size: 3rem; margin-bottom: 10px; }
+        .drop-zone p { color: var(--text2); }
+        .drop-zone input { display: none; }
+        .preview {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .preview.show { display: block; }
+        .output {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--cyan);
+            word-break: break-all;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .output.show { display: block; }
+        .btn {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .btn-primary { background: var(--cyan); color: #000; margin-bottom: 10px; }
+        .btn-primary:hover { box-shadow: 0 0 30px rgba(0,240,255,0.4); }
+        .btn-copy { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); }
+        .btn-copy:hover { background: rgba(0,240,255,0.1); }
+        .success { color: #00ff88; font-size: 0.9rem; text-align: center; margin-top: 10px; display: none; }
+        .instructions {
+            margin-top: 40px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        .instructions h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--cyan);
+            margin-bottom: 20px;
+        }
+        .instructions ol {
+            padding-left: 20px;
+            color: var(--text2);
+            line-height: 2;
+            font-size: 0.95rem;
+        }
+        .instructions code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--cyan);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ Subir Producto — Kihsu3D</h1>
+        <div class="card">
+            <div class="form-group">
+                <label>Categoría</label>
+                <select id="categoria">
+                    <option value="anime">Láminas 3D — Anime</option>
+                    <option value="kpop">Láminas 3D — Kpop</option>
+                    <option value="peliculas">Láminas 3D — Películas</option>
+                    <option value="musica">Láminas 3D — Música</option>
+                    <option value="series">Láminas 3D — Series</option>
+                    <option value="videojuegos">Láminas 3D — Videojuegos</option>
+                    <option value="llaveros">Llaveros Personalizados</option>
+                    <option value="figuras">Figuras Personalizadas</option>
+                    <option value="laminaspersonal">Láminas Personalizadas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre del producto</label>
+                <input type="text" id="nombre" placeholder="ej: Naruto Sage Mode">
+            </div>
+
+            <div class="form-group">
+                <label>Precio (€)</label>
+                <input type="text" id="precio" placeholder="ej: 25">
+            </div>
+
+            <div class="form-group">
+                <label>Imagen</label>
+                <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                    <div class="icon">📷</div>
+                    <p>Arrastra una imagen aquí o haz click para seleccionar</p>
+                    <p style="font-size:0.8rem;margin-top:5px;">PNG, JPG, WEBP — máximo 5MB</p>
+                    <input type="file" id="fileInput" accept="image/*" onchange="handleFile(this.files[0])">
+                </div>
+                <img class="preview" id="preview" alt="Vista previa">
+            </div>
+
+            <div class="output" id="output"></div>
+
+            <button class="btn btn-primary" id="generateBtn" onclick="generate()" disabled>Generar código</button>
+            <button class="btn btn-copy" id="copyBtn" onclick="copyCode()" style="display:none;">📋 Copiar código</button>
+            <p class="success" id="success">✓ Copiado al portapapeles</p>
+        </div>
+
+        <div class="instructions">
+            <h2>📋 Instrucciones</h2>
+            <ol>
+                <li>Selecciona la <strong>categoría</strong> del producto</li>
+                <li>Escribe el <strong>nombre</strong> y el <strong>precio</strong></li>
+                <li>Selecciona la <strong>imagen</strong> del producto</li>
+                <li>Copia el <strong>código generado</strong></li>
+                <li>Ve a GitHub → repo <code>Kihsu3d/Kihsu3d</code> → carpeta <code>content/[categoría]/</code></li>
+                <li>Crea un archivo nuevo: nombre como quieras + extensión <code>.md</code> (ej: <code>naruto.md</code>)</li>
+                <li>Pega el código copiado dentro del archivo</li>
+                <li>Haz <strong>Commit changes</strong></li>
+                <li>La imagen se muestra automáticamente en la web en 1-2 minutos</li>
+            </ol>
+            <p style="margin-top:15px;color:var(--text2);font-size:0.9rem;">💡 <strong>Para la imagen:</strong> súbela primero a GitHub en la carpeta <code>images/</code> o usa un servicio como <code>imgbb.com</code> para obtener una URL directa.</p>
+        </div>
+    </div>
+
+    <script>
+    let currentCode = '';
+    let imageBase64 = '';
+
+    function handleFile(file) {
+        if (!file) return;
+        if (file.size > 5 * 1024 * 1024) {
+            alert('La imagen es muy grande. Máximo 5MB.');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imageBase64 = e.target.result;
+            document.getElementById('preview').src = imageBase64;
+            document.getElementById('preview').classList.add('show');
+            document.getElementById('generateBtn').disabled = false;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function generate() {
+        const cat = document.getElementById('categoria').value;
+        const nombre = document.getElementById('nombre').value.trim();
+        const precio = document.getElementById('precio').value.trim();
+
+        if (!nombre) { alert('Escribe el nombre del producto'); return; }
+        if (!precio) { alert('Escribe el precio'); return; }
+
+        const slug = nombre.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        const filename = slug + '.md';
+
+        const code = `---
+name: "${nombre}"
+price: "${precio}"
+image: "${imageBase64}"
+---`;
+
+        currentCode = code;
+        document.getElementById('output').textContent = filename + '\n\n' + code;
+        document.getElementById('output').classList.add('show');
+        document.getElementById('copyBtn').style.display = 'block';
+    }
+
+    function copyCode() {
+        const filename = document.getElementById('nombre').value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '.md';
+        const code = `---\nname: "${document.getElementById('nombre').value.trim()}"\nprice: "${document.getElementById('precio').value.trim()}"\nimage: "${imageBase64}"\n---`;
+        navigator.clipboard.writeText(code).then(() => {
+            const s = document.getElementById('success');
+            s.style.display = 'block';
+            setTimeout(() => s.style.display = 'none', 2000);
+        });
+    }
+
+    // Drag & drop
+    const dropZone = document.getElementById('dropZone');
+    ['dragenter','dragover'].forEach(evt =>
+        dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.style.borderColor = 'var(--cyan)'; })
+    );
+    ['dragleave','drop'].forEach(evt =>
+        dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.style.borderColor = ''; })
+    );
+    dropZone.addEventListener('drop', e => {
+        const file = e.dataTransfer.files[0];
+        if (file) handleFile(file);
+    });
+    </script>
+</body>
+</html>
