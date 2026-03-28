@@ -252,7 +252,7 @@
         let html = '<div class="product-grid">';
         for (const file of files) {
             const data = PRODUCT_DATA[file] || { name: file, price: '' };
-            const imgUrl = `${IMAGES_BASE}/${cat}/${file.toUpperCase()}.png`;
+            const imgUrl = `${IMAGES_BASE}/${cat}/${file}.png`;
             html += `
             <div class="product-card">
                 <img class="product-image" src="${imgUrl}" alt="${data.name}" onclick="openImgModal('${imgUrl}','${data.name}','${data.price}')" onerror="this.style.display='none'">
