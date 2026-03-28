@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kihsu3D — Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #12121a;
+            --cyan: #00f0ff;
+            --magenta: #ff00aa;
+            --purple: #7b2fff;
+            --text: #fff;
+            --text2: #8a8a9a;
+            --border: rgba(255,255,255,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Rajdhani', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+        /* LOGIN */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-box h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-bottom: 30px;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .login-box input:focus { outline: none; border-color: var(--cyan); }
+        .login-box button {
+            width: 100%;
+            padding: 14px;
+            background: var(--cyan);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-error { color: #ff4444; font-size: 0.9rem; margin-top: 10px; display: none; }
+
+        /* ADMIN LAYOUT */
+        .admin-layout { display: none; }
+        .admin-header {
+            padding: 20px 40px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .admin-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--cyan);
+        }
+        .admin-header-right { display: flex; gap: 15px; align-items: center; }
+        .btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+        .btn-primary { background: var(--cyan); color: #000; }
+        .btn-danger { background: #ff3366; color: #fff; }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+
+        /* CATEGORY LIST */
+        .category-list {
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .category-section-admin {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .category-header {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .category-header:hover { background: rgba(255,255,255,0.02); }
+        .category-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--cyan);
+            letter-spacing: 1px;
+        }
+        .category-header .arrow {
+            color: var(--text2);
+            transition: transform 0.3s;
+        }
+        .category-section-admin.open .arrow { transform: rotate(180deg); }
+        .category-body { display: none; padding: 20px 25px; }
+        .category-section-admin.open .category-body { display: block; }
+
+        /* PRODUCT GRID IN ADMIN */
+        .product-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .product-upload-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .product-upload-card:hover { border-color: var(--cyan); }
+        .product-upload-preview {
+            width: 100%;
+            height: 150px;
+            background: #1a1a1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-upload-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-upload-preview .placeholder-text {
+            color: var(--text2);
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 10px;
+        }
+        .product-upload-info {
+            padding: 12px;
+        }
+        .product-upload-info input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .product-upload-info input:focus { outline: none; border-color: var(--cyan); }
+        .product-upload-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-sm {
+            flex: 1;
+            padding: 8px;
+            font-size: 0.75rem;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .btn-upload { background: var(--cyan); color: #000; }
+        .btn-delete { background: #ff3366; color: #fff; }
+
+        /* ADD BUTTON */
+        .add-product-card {
+            background: rgba(0,240,255,0.05);
+            border: 2px dashed rgba(0,240,255,0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .add-product-card:hover {
+            border-color: var(--cyan);
+            background: rgba(0,240,255,0.1);
+        }
+        .add-product-card .icon { font-size: 2rem; color: var(--cyan); }
+        .add-product-card span { color: var(--text2); font-size: 0.9rem; }
+
+        /* HIDDEN FILE INPUT */
+        .file-input-hidden { display: none; }
+
+        /* PREVIEW MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal-image {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: var(--cyan);
+            color: #000;
+            border: none;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* SUCCESS MSG */
+        .success-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00ff88;
+            color: #000;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+            z-index: 2000;
+        }
+        .success-toast.show { display: block; }
+
+        /* STORAGE INFO */
+        .storage-info {
+            padding: 10px 25px;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text2);
+        }
+
+        @media (max-width: 768px) {
+            .admin-header { padding: 15px 20px; flex-wrap: wrap; gap: 10px; }
+            .category-list { padding: 20px; }
+            .product-upload-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+    <div class="login-box">
+        <h1>🔐 KIHSU3D Admin</h1>
+        <input type="password" id="passwordInput" placeholder="Contraseña" onkeypress="if(event.key==='Enter')tryLogin()">
+        <button onclick="tryLogin()">Entrar</button>
+        <p class="login-error" id="loginError">Contraseña incorrecta</p>
+        <p style="color:var(--text2);font-size:0.8rem;margin-top:20px;">Predeterminada: kihsu3d2026</p>
+    </div>
+</div>
+
+<!-- ADMIN LAYOUT -->
+<div class="admin-layout" id="adminLayout">
+    <div class="admin-header">
+        <h1>🛠️ KIHSU3D — Gestión de Productos</h1>
+        <div class="admin-header-right">
+            <button class="btn btn-outline" onclick="exportAllData()">Exportar datos</button>
+            <button class="btn btn-danger" onclick="logout()">Salir</button>
+        </div>
+    </div>
+
+    <div class="category-list" id="categoryList"></div>
+
+    <div class="storage-info">
+        💾 Almacenamiento usado: <span id="storageUsed">0 KB</span> / 5 MB. Imágenes más grandes pueden tardar en procesarse.
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="imageModal" onclick="closeModal(event)">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <img class="modal-image" id="modalImage" src="" alt="Vista previa">
+</div>
+
+<!-- TOAST -->
+<div class="success-toast" id="successToast">✓ Guardado correctamente</div>
+
+<!-- HIDDEN FILE INPUT -->
+<input type="file" id="fileInput" class="file-input-hidden" accept="image/*" onchange="handleFileSelect(event)">
+
+<script>
+// ============ CONFIG ============
+const PASSWORD = 'kihsu3d2026';
+const STORAGE_KEY = 'kihsu3d_admin';
+const MAX_STORAGE_MB = 5;
+const MAX_STORAGE = MAX_STORAGE_MB * 1024 * 1024;
+
+// ============ DATA STRUCTURE ============
+const CATEGORIES = [
+    {
+        id: 'laminas3d',
+        name: 'Láminas 3D',
+        subcategories: [
+            { id: 'anime', name: 'Anime' },
+            { id: 'kpop', name: 'Kpop' },
+            { id: 'peliculas', name: 'Películas' },
+            { id: 'musica', name: 'Música' },
+            { id: 'series', name: 'Series' },
+            { id: 'videojuegos', name: 'Videojuegos' }
+        ]
+    },
+    { id: 'llaveros', name: 'Llaveros Personalizados', subcategories: [] },
+    { id: 'figuras', name: 'Figuras Personalizadas', subcategories: [] },
+    { id: 'laminaspersonal', name: 'Láminas Personalizadas', subcategories: [] }
+];
+
+let currentEditingCard = null;
+let currentCategoryId = null;
+let currentSubcategoryId = null;
+
+// ============ AUTH ============
+function tryLogin() {
+    const pw = document.getElementById('passwordInput').value;
+    if (pw === PASSWORD) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminLayout').style.display = 'block';
+        loadAndRender();
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+    }
+}
+
+function logout() {
+    document.getElementById('adminLayout').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('passwordInput').value = '';
+}
+
+// ============ DATA LAYER ============
+function loadData() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return getDefaultData();
+    try {
+        return JSON.parse(raw);
+    } catch(e) {
+        return getDefaultData();
+    }
+}
+
+function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    updateStorageInfo();
+}
+
+function getDefaultData() {
+    const data = {};
+    CATEGORIES.forEach(cat => {
+        if (cat.subcategories.length > 0) {
+            cat.subcategories.forEach(sub => {
+                data[sub.id] = [];
+            });
+        } else {
+            data[cat.id] = [];
+        }
+    });
+    return data;
+}
+
+// ============ RENDER ============
+function loadAndRender() {
+    const data = loadData();
+    renderCategories(data);
+    updateStorageInfo();
+}
+
+function renderCategories(data) {
+    const container = document.getElementById('categoryList');
+    container.innerHTML = '';
+
+    CATEGORIES.forEach(cat => {
+        const section = document.createElement('div');
+        section.className = 'category-section-admin';
+        section.id = 'cat-' + cat.id;
+
+        let bodyContent = '';
+        if (cat.subcategories.length > 0) {
+            // Con subcategorías: tabs + productos
+            bodyContent = `
+                <div style="margin-bottom:15px;display:flex;gap:8px;flex-wrap:wrap;">
+            `;
+            cat.subcategories.forEach((sub, i) => {
+                bodyContent += `<button class="btn btn-outline btn-sm" onclick="showSubcatAdmin('${cat.id}','${sub.id}',this)" style="border-color:${i===0?'var(--cyan)':'var(--border)'};color:${i===0?'var(--cyan)':'var(--text2)'}">${sub.name}</button>`;
+            });
+            bodyContent += `</div>`;
+
+            cat.subcategories.forEach((sub, i) => {
+                bodyContent += `<div id="${cat.id}-${sub.id}-content" style="display:${i===0?'block':'none'}">`;
+                bodyContent += renderProductGrid(data[sub.id] || [], cat.id, sub.id);
+                bodyContent += `</div>`;
+            });
+        } else {
+            // Sin subcategorías
+            bodyContent = renderProductGrid(data[cat.id] || [], cat.id, null);
+        }
+
+        section.innerHTML = `
+            <div class="category-header" onclick="toggleCategory('${cat.id}')">
+                <h2>${cat.name}</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="category-body">${bodyContent}</div>
+        `;
+        container.appendChild(section);
+    });
+}
+
+function renderProductGrid(products, catId, subId) {
+    let html = '<div class="product-upload-grid">';
+
+    products.forEach((p, i) => {
+        html += `
+        <div class="product-upload-card" id="card-${catId}-${subId || 'main'}-${i}">
+            <div class="product-upload-preview" onclick="openPreview('${p.image}')">
+                ${p.image ? `<img src="${p.image}" alt="Producto">` : '<span class="placeholder-text">📷<br>Sin imagen</span>'}
+            </div>
+            <div class="product-upload-info">
+                <input type="text" placeholder="Nombre del producto" value="${p.name || ''}" onchange="updateProduct(${i},'name',this.value,'${catId}','${subId}')">
+                <input type="text" placeholder="Precio (€)" value="${p.price || ''}" onchange="updateProduct(${i},'price',this.value,'${catId}','${subId}')">
+                <div class="product-upload-actions">
+                    <button class="btn-sm btn-upload" onclick="triggerUpload(${i},'${catId}','${subId}')">📷 Cambiar</button>
+                    <button class="btn-sm btn-delete" onclick="deleteProduct(${i},'${catId}','${subId}')">✕</button>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    // Add new card
+    html += `
+        <div class="add-product-card" onclick="addProduct('${catId}','${subId}')">
+            <span class="icon">➕</span>
+            <span>Añadir producto</span>
+        </div>
+    `;
+
+    html += '</div>';
+    return html;
+}
+
+// ============ CATEGORY UI ============
+function toggleCategory(catId) {
+    const section = document.getElementById('cat-' + catId);
+    section.classList.toggle('open');
+}
+
+function showSubcatAdmin(catId, subId, btn) {
+    // Hide all subcat contents for this category
+    const catEl = document.getElementById('cat-' + catId);
+    catEl.querySelectorAll('[id$="-content"]').forEach(el => el.style.display = 'none');
+    // Show selected
+    document.getElementById(catId + '-' + subId + '-content').style.display = 'block';
+    // Reset tab colors
+    catEl.querySelectorAll('.btn-outline').forEach(b => { b.style.borderColor = 'var(--border)'; b.style.color = 'var(--text2)'; });
+    btn.style.borderColor = 'var(--cyan)';
+    btn.style.color = 'var(--cyan)';
+}
+
+// ============ PRODUCT OPERATIONS ============
+function addProduct(catId, subId) {
+    const data = loadData();
+    const key = subId || catId;
+    if (!data[key]) data[key] = [];
+    data[key].push({ name: '', price: '', image: '' });
+    saveData(data);
+    loadAndRender();
+    // Re-open the category
+    const section = document.getElementById('cat-' + catId);
+    section.classList.add('open');
+    if (subId) showSubcatAdmin(catId, subId, document.querySelector(`#cat-${catId} .btn-outline`));
+    showToast('Producto añadido');
+}
+
+function updateProduct(index, field, value, catId, subId) {
+    const data = loadData();
+    const key = subId || catId;
+    if (data[key] && data[key][index]) {
+        data[key][index][field] = value;
+        saveData(data);
+    }
+}
+
+function deleteProduct(index, catId, subId) {
+    if (!confirm('¿Eliminar este producto?')) return;
+    const data = loadData();
+    const key = subId || catId;
+    if (data[key]) {
+        data[key].splice(index, 1);
+        saveData(data);
+        loadAndRender();
+        showToast('Producto eliminado');
+    }
+}
+
+// ============ FILE UPLOAD ============
+let pendingUploadIndex = null;
+let pendingUploadCatId = null;
+let pendingUploadSubId = null;
+
+function triggerUpload(index, catId, subId) {
+    pendingUploadIndex = index;
+    pendingUploadCatId = catId;
+    pendingUploadSubId = subId;
+    document.getElementById('fileInput').click();
+}
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert('La imagen es muy grande. Máximo 2MB. Usa una imagen más comprimida.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const base64 = e.target.result;
+        updateProductImage(pendingUploadIndex, base64, pendingUploadCatId, pendingUploadSubId);
+    };
+    reader.readAsDataURL(file);
+    event.target.value = '';
+}
+
+function updateProductImage(index, base64, catId, subId) {
+    const data = loadData();
+    const key = subId || catId;
+    if (data[key] && data[key][index]) {
+        data[key][index].image = base64;
+        saveData(data);
+        loadAndRender();
+        // Re-open
+        const section = document.getElementById('cat-' + catId);
+        section.classList.add('open');
+        if (subId) {
+            const tabs = section.querySelectorAll('.btn-outline');
+            if (tabs.length > 0) {
+                tabs.forEach(t => { t.style.borderColor = 'var(--border)'; t.style.color = 'var(--text2)'; });
+                tabs[0].style.borderColor = 'var(--cyan)';
+                tabs[0].style.color = 'var(--cyan)';
+            }
+        }
+        showToast('Imagen guardada');
+    }
+}
+
+// ============ PREVIEW MODAL ============
+function openPreview(src) {
+    if (!src) return;
+    document.getElementById('modalImage').src = src;
+    document.getElementById('imageModal').classList.add('show');
+}
+
+function closeModal(e) {
+    if (e.target.id === 'imageModal' || e.target.classList.contains('modal-close')) {
+        document.getElementById('imageModal').classList.remove('show');
+    }
+}
+
+// ============ EXPORT / IMPORT ============
+function exportAllData() {
+    const data = loadData();
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'kihsu3d_productos.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Datos exportados');
+}
+
+// ============ STORAGE INFO ============
+function updateStorageInfo() {
+    let total = 0;
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY) || '';
+        total = new Blob([raw]).size;
+    } catch(e) {}
+    const mb = (total / (1024)).toFixed(1);
+    document.getElementById('storageUsed').textContent = mb + ' KB / ' + MAX_STORAGE_MB + ' MB';
+}
+
+// ============ TOAST ============
+function showToast(msg) {
+    const toast = document.getElementById('successToast');
+    toast.textContent = '✓ ' + msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// ============ INIT ============
+updateStorageInfo();
+</script>
+</body>
+</html>
