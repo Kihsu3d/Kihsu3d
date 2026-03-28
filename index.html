@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* GRID BG */
         .grid-bg {
             position: fixed;
             top: 0; left: 0;
@@ -42,7 +41,6 @@
 
         .content-wrap { position: relative; z-index: 1; }
 
-        /* NAV */
         nav {
             position: fixed;
             top: 0;
@@ -85,7 +83,6 @@
         }
         nav a:hover { color: var(--accent-cyan); }
 
-        /* HERO */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -179,7 +176,6 @@
             transform: translateY(-3px);
         }
 
-        /* FEATURES */
         .features {
             padding: 100px 60px;
             display: grid;
@@ -222,6 +218,31 @@
             padding: 100px 60px;
             max-width: 1300px;
             margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+            margin: 20px auto 0;
+            border-radius: 2px;
         }
 
         .category-tabs {
@@ -320,24 +341,11 @@
             height: 260px;
             object-fit: cover;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
-        }
-
-        .product-tag {
-            position: absolute;
-            top: 15px; right: 15px;
-            background: var(--accent-cyan);
-            color: #000;
-            padding: 5px 14px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            cursor: zoom-in;
         }
 
         .product-info {
             padding: 25px;
-            position: relative;
         }
 
         .product-info h3 {
@@ -517,7 +525,6 @@
 
         .contact-form .btn { width: 100%; text-align: center; }
 
-        /* FOOTER */
         footer {
             padding: 40px 60px;
             text-align: center;
@@ -532,21 +539,9 @@
             display: inline-block;
         }
 
-        /* ANIMATIONS */
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-            nav { padding: 15px 25px; }
-            nav ul { display: none; }
-            .hero { padding: 100px 25px 60px; }
-            .features, .products, .how, .about, .contact { padding: 60px 25px; }
-            .about-grid { grid-template-columns: 1fr; gap: 30px; }
-            .how-grid { grid-template-columns: 1fr; }
-            .contact-form { padding: 30px 25px; }
         }
 
         /* IMAGE MODAL */
@@ -601,7 +596,22 @@
             margin-bottom: 4px;
         }
         .img-modal-info p { font-size: 0.9rem; color: var(--text-secondary); }
-        .product-image { cursor: zoom-in; }
+
+        /* LOADING STATE */
+        .loading-msg {
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 60px;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 25px; }
+            nav ul { display: none; }
+            .hero { padding: 100px 25px 60px; }
+            .features, .categories, .how, .about, .contact { padding: 60px 25px; }
+            .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .contact-form { padding: 30px 25px; }
+        }
     </style>
 </head>
 <body>
@@ -660,188 +670,52 @@
         <section class="categories" id="productos">
             <div class="section-header">
                 <h2>Nuestros Productos</h2>
-                <p>Ilustraciones impresas en 3D con relieve real</p>
+                <p>Láminas 3D para decorar tu hogar con estilo</p>
                 <div class="accent-line"></div>
             </div>
 
             <!-- Category Tabs -->
             <div class="category-tabs">
-                <button class="category-tab active" onclick="showCategory('laminas3d')">Láminas 3D</button>
-                <button class="category-tab" onclick="showCategory('llaveros')">Llaveros Personalizados</button>
-                <button class="category-tab" onclick="showCategory('figuras')">Figuras Personalizadas</button>
-                <button class="category-tab" onclick="showCategory('laminaspersonal')">Láminas Personalizadas</button>
+                <button class="category-tab active" onclick="showCategory('laminas3d', this)">Láminas 3D</button>
+                <button class="category-tab" onclick="showCategory('llaveros', this)">Llaveros Personalizados</button>
+                <button class="category-tab" onclick="showCategory('figuras', this)">Figuras Personalizadas</button>
+                <button class="category-tab" onclick="showCategory('laminaspersonal', this)">Láminas Personalizadas</button>
             </div>
 
             <!-- LAMINAS 3D -->
             <div class="category-section active" id="laminas3d">
                 <div class="subcategories">
-                    <button class="subcategory-btn active" onclick="showSubcat('laminas3d','anime')">Anime</button>
-                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','kpop')">Kpop</button>
-                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','peliculas')">Películas</button>
-                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','musica')">Música</button>
-                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','series')">Series</button>
-                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','videojuegos')">Videojuegos</button>
+                    <button class="subcategory-btn active" onclick="showSubcat('laminas3d','anime', this)">Anime</button>
+                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','kpop', this)">Kpop</button>
+                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','peliculas', this)">Películas</button>
+                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','musica', this)">Música</button>
+                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','series', this)">Series</button>
+                    <button class="subcategory-btn" onclick="showSubcat('laminas3d','videojuegos', this)">Videojuegos</button>
                 </div>
 
-                <!-- ANIME -->
-                <div class="subcategory-section active" id="laminas3d-anime">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
-
-                <!-- KPOP -->
-                <div class="subcategory-section" id="laminas3d-kpop">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
-
-                <!-- PELÍCULAS -->
-                <div class="subcategory-section" id="laminas3d-peliculas">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
-
-                <!-- MÚSICA -->
-                <div class="subcategory-section" id="laminas3d-musica">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
-
-                <!-- SERIES -->
-                <div class="subcategory-section" id="laminas3d-series">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
-
-                <!-- VIDEOJUEGOS -->
-                <div class="subcategory-section" id="laminas3d-videojuegos">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
+                <div class="subcategory-section active" id="laminas3d-anime"><p class="loading-msg">Cargando...</p></div>
+                <div class="subcategory-section" id="laminas3d-kpop"><p class="loading-msg">Cargando...</p></div>
+                <div class="subcategory-section" id="laminas3d-peliculas"><p class="loading-msg">Cargando...</p></div>
+                <div class="subcategory-section" id="laminas3d-musica"><p class="loading-msg">Cargando...</p></div>
+                <div class="subcategory-section" id="laminas3d-series"><p class="loading-msg">Cargando...</p></div>
+                <div class="subcategory-section" id="laminas3d-videojuegos"><p class="loading-msg">Cargando...</p></div>
             </div>
 
             <!-- LLAVEROS -->
             <div class="category-section" id="llaveros">
-                <div id="llaveros-content">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
+                <div id="llaveros-content"><p class="loading-msg">Cargando...</p></div>
             </div>
 
             <!-- FIGURAS -->
             <div class="category-section" id="figuras">
-                <div id="figuras-content">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
+                <div id="figuras-content"><p class="loading-msg">Cargando...</p></div>
             </div>
 
             <!-- LÁMINAS PERSONALIZADAS -->
             <div class="category-section" id="laminaspersonal">
-                <div id="laminaspersonal-content">
-                    <p style="color:var(--text-secondary);text-align:center;padding:40px;">Cargando productos...</p>
-                </div>
+                <div id="laminaspersonal-content"><p class="loading-msg">Cargando...</p></div>
             </div>
         </section>
-
-        <script>
-        const STORAGE_KEY = 'kihsu3d_admin';
-
-        function loadProducts() {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return {};
-            try { return JSON.parse(raw); } catch(e) { return {}; }
-        }
-
-        function renderProducts() {
-            const data = loadProducts();
-
-            // Láminas 3D subcategories
-            ['anime','kpop','peliculas','musica','series','videojuegos'].forEach(sub => {
-                const container = document.getElementById('laminas3d-' + sub);
-                if (!container) return;
-                const products = data[sub] || [];
-                if (products.length === 0) {
-                    container.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:40px;">Aún no hay productos. <a href="admin.html" style="color:var(--accent-cyan);">Añádelos desde el admin →</a></p>';
-                } else {
-                    let html = '<div class="product-grid">';
-                    products.forEach(p => {
-                        if (!p.image) return;
-                        html += `
-                        <div class="product-card">
-                            <img class="product-image" src="${p.image}" alt="${p.name}" onclick="openImgModal('${p.image}','${p.name || sub}','${p.price || ''}')" onerror="this.style.display='none'">
-                            <div class="product-info">
-                                <h3>${p.name || sub}</h3>
-                                ${p.price ? '<span class="product-price">€' + p.price + '</span>' : ''}
-                                <div class="product-footer">
-                                    ${p.price ? `<span class="product-price">€${p.price}</span>` : ''}
-                                    <button class="btn-sm" onclick="alert('Escríbenos a nuestro WhatsApp para pedir este producto')">Pedir</button>
-                                </div>
-                            </div>
-                        </div>`;
-                    });
-                    html += '</div>';
-                    container.innerHTML = html;
-                }
-            });
-
-            // Llaveros
-            const llaverosEl = document.getElementById('llaveros-content');
-            if (llaverosEl) {
-                const products = data['llaveros'] || [];
-                llaverosEl.innerHTML = products.length === 0
-                    ? '<p style="color:var(--text-secondary);text-align:center;padding:40px;">Aún no hay productos. <a href="admin.html" style="color:var(--accent-cyan);">Añádelos desde el admin →</a></p>'
-                    : buildProductGrid(products, 'llaveros');
-            }
-
-            // Figuras
-            const figurasEl = document.getElementById('figuras-content');
-            if (figurasEl) {
-                const products = data['figuras'] || [];
-                figurasEl.innerHTML = products.length === 0
-                    ? '<p style="color:var(--text-secondary);text-align:center;padding:40px;">Aún no hay productos. <a href="admin.html" style="color:var(--accent-cyan);">Añádelos desde el admin →</a></p>'
-                    : buildProductGrid(products, 'figuras');
-            }
-
-            // Láminas personal
-            const laminasPEl = document.getElementById('laminaspersonal-content');
-            if (laminasPEl) {
-                const products = data['laminaspersonal'] || [];
-                laminasPEl.innerHTML = products.length === 0
-                    ? '<p style="color:var(--text-secondary);text-align:center;padding:40px;">Aún no hay productos. <a href="admin.html" style="color:var(--accent-cyan);">Añádelos desde el admin →</a></p>'
-                    : buildProductGrid(products, 'laminaspersonal');
-            }
-        }
-
-        function buildProductGrid(products, catId) {
-            let html = '<div class="product-grid">';
-            products.forEach((p, i) => {
-                if (!p.image) return;
-                html += `
-                <div class="product-card">
-                    <img class="product-image" src="${p.image}" alt="${p.name}" onclick="openImgModal('${p.image}','${p.name || 'Producto'}','${p.price || ''}')" onerror="this.style.display='none'">
-                    <div class="product-info">
-                        <h3>${p.name || 'Producto'}</h3>
-                        <div class="product-footer">
-                            ${p.price ? `<span class="product-price">€${p.price}</span>` : ''}
-                            <button class="btn-sm" onclick="alert('Escríbenos a nuestro WhatsApp para pedir este producto')">Pedir</button>
-                        </div>
-                    </div>
-                </div>`;
-            });
-            html += '</div>';
-            return html;
-        }
-
-        function showCategory(name) {
-            document.querySelectorAll('.category-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.category-tab').forEach(el => el.classList.remove('active'));
-            document.getElementById(name).classList.add('active');
-            event.target.classList.add('active');
-        }
-        function showSubcat(cat, sub) {
-            var catEl = document.getElementById(cat);
-            catEl.querySelectorAll('.subcategory-section').forEach(el => el.classList.remove('active'));
-            catEl.querySelectorAll('.subcategory-btn').forEach(el => el.classList.remove('active'));
-            catEl.querySelector('#' + cat + '-' + sub).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Load products on page load
-        document.addEventListener('DOMContentLoaded', renderProducts);
-        </script>
 
         <!-- HOW -->
         <section class="how" id="como">
@@ -887,7 +761,7 @@
                 </div>
                 <div class="about-item">
                     <h4>Personalización</h4>
-                    <p>¿Tienes un diseño propio? ¿Quieres un tamaño diferente? ¿Otro color? Contáctanos y lo fabricamos a tu medida. La personalización es nuestro fuerte.</p>
+                    <p>¿Tienes un diseño propio? ¿Quieres un tamaño diferente? Contáctanos y lo fabricamos a tu medida. La personalización es nuestro fuerte.</p>
                 </div>
                 <div class="about-item">
                     <h4>Envíos</h4>
@@ -931,28 +805,143 @@
             <p>© 2026 Kihsu3D — Ilustraciones impresas en 3D</p>
             <p style="margin-top:10px; font-size:0.8rem;">Tu idea, nuestra tecnología. Del diseño a tu pared.</p>
         </footer>
+    </div>
 
-        <!-- IMAGE MODAL -->
-        <div class="img-modal" id="imgModal" onclick="closeImgModal(event)">
-            <button class="img-modal-close" onclick="closeImgModal(event)">✕</button>
-            <img id="modalImg" src="" alt="">
-            <div class="img-modal-info" id="modalInfo"></div>
-        </div>
+    <!-- IMAGE MODAL -->
+    <div class="img-modal" id="imgModal" onclick="closeImgModal(event)">
+        <button class="img-modal-close" onclick="closeImgModal(event)">✕</button>
+        <img id="modalImg" src="" alt="">
+        <div class="img-modal-info" id="modalInfo"></div>
+    </div>
 
-        <script>
-        function openImgModal(src, name, price) {
-            document.getElementById('modalImg').src = src;
-            document.getElementById('modalInfo').innerHTML = '<h3>' + name + '</h3><p>' + (price ? '€' + price : '') + '</p>';
-            document.getElementById('imgModal').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeImgModal(e) {
-            if (e.target.id === 'imgModal' || e.target.classList.contains('img-modal-close')) {
-                document.getElementById('imgModal').classList.remove('open');
-                document.body.style.overflow = '';
+    <script>
+    // REPLACE WITH YOUR GITHUB USERNAME
+    const GITHUB_USER = 'Kihsu3d';
+    const REPO = 'kihsu3d';
+    const BRANCH = 'main';
+    const BASE_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO}/${BRANCH}/content`;
+
+    async function loadProducts() {
+        const categories = ['anime','kpop','peliculas','musica','series','videojuegos'];
+        for (const cat of categories) {
+            try {
+                const res = await fetch(`${BASE_URL}/${cat}/`);
+                if (!res.ok) throw new Error();
+                const text = await res.text();
+                // Parse directory listing or JSON
+                let products;
+                try { products = JSON.parse(text); } catch { products = parseMarkdownDir(text, cat); }
+                renderCategory(cat, products);
+            } catch(e) {
+                // Try fetching individual files
+                await loadCategoryFiles(cat);
             }
         }
-        </script>
-    </div>
+
+        // Other categories
+        await loadCategoryFiles('llaveros');
+        await loadCategoryFiles('figuras');
+        await loadCategoryFiles('laminaspersonal');
+    }
+
+    async function loadCategoryFiles(cat) {
+        const el = document.getElementById(cat + '-content');
+        if (!el) return;
+        el.innerHTML = '<p class="loading-msg">Cargando...</p>';
+        try {
+            const res = await fetch(`${BASE_URL}/${cat}/`);
+            if (!res.ok) throw new Error();
+            const text = await res.text();
+            let products;
+            try { products = JSON.parse(text); } catch { products = []; }
+            renderPlainGrid(cat, products);
+        } catch(e) {
+            el.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="/admin/" style="color:var(--accent-cyan);">Añádelos desde el CMS →</a></p>';
+        }
+    }
+
+    function renderCategory(cat, products) {
+        const container = document.getElementById('laminas3d-' + cat);
+        if (!container) return;
+        if (!products || products.length === 0) {
+            container.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="/admin/" style="color:var(--accent-cyan);">Añádelos desde el CMS →</a></p>';
+            return;
+        }
+        let html = '<div class="product-grid">';
+        products.forEach(p => {
+            if (!p.image) return;
+            html += `
+            <div class="product-card">
+                <img class="product-image" src="${p.image}" alt="${p.name || cat}" onclick="openImgModal('${p.image}','${p.name || cat}','${p.price || ''}')">
+                <div class="product-info">
+                    <h3>${p.name || cat}</h3>
+                    <div class="product-footer">
+                        ${p.price ? `<span class="product-price">€${p.price}</span>` : ''}
+                        <button class="btn-sm" onclick="alert('Escríbenos a nuestro WhatsApp para pedir este producto')">Pedir</button>
+                    </div>
+                </div>
+            </div>`;
+        });
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    function renderPlainGrid(cat, products) {
+        const el = document.getElementById(cat + '-content');
+        if (!el) return;
+        if (!products || products.length === 0) {
+            el.innerHTML = '<p class="loading-msg">No hay productos aún. <a href="/admin/" style="color:var(--accent-cyan);">Añádelos desde el CMS →</a></p>';
+            return;
+        }
+        let html = '<div class="product-grid">';
+        products.forEach(p => {
+            if (!p.image) return;
+            html += `
+            <div class="product-card">
+                <img class="product-image" src="${p.image}" alt="${p.name || cat}" onclick="openImgModal('${p.image}','${p.name || cat}','${p.price || ''}')">
+                <div class="product-info">
+                    <h3>${p.name || cat}</h3>
+                    <div class="product-footer">
+                        ${p.price ? `<span class="product-price">€${p.price}</span>` : ''}
+                        <button class="btn-sm" onclick="alert('Escríbenos a nuestro WhatsApp para pedir este producto')">Pedir</button>
+                    </div>
+                </div>
+            </div>`;
+        });
+        html += '</div>';
+        el.innerHTML = html;
+    }
+
+    function showCategory(name, btn) {
+        document.querySelectorAll('.category-section').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.category-tab').forEach(el => el.classList.remove('active'));
+        document.getElementById(name).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function showSubcat(cat, sub, btn) {
+        var catEl = document.getElementById(cat);
+        catEl.querySelectorAll('.subcategory-section').forEach(el => el.classList.remove('active'));
+        catEl.querySelectorAll('.subcategory-btn').forEach(el => el.classList.remove('active'));
+        catEl.querySelector('#' + cat + '-' + sub).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function openImgModal(src, name, price) {
+        document.getElementById('modalImg').src = src;
+        document.getElementById('modalInfo').innerHTML = '<h3>' + name + '</h3><p>' + (price ? '€' + price : '') + '</p>';
+        document.getElementById('imgModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeImgModal(e) {
+        if (e.target.id === 'imgModal' || e.target.classList.contains('img-modal-close')) {
+            document.getElementById('imgModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
 </body>
 </html>
