@@ -232,15 +232,17 @@
 
     // Default product data — update prices and names here
     const PRODUCT_DATA = {
-        'luffy': { name: 'Luffy', price: '12' },
-        // Add more products here:
-        // 'naruto': { name: 'Naruto Uzumaki', price: '25' },
+        'luffy': { name: 'Luffy', price: '12' }
     };
 
     const IMAGES_BASE = GITHUB + '/images';
 
     async function loadCategory(cat) {
-        const el = document.getElementById(cat + '-content');
+        // anime/kpop/etc are subcategories inside laminas3d — use correct ID
+        const isSubcat = ['anime','kpop','peliculas','musica','series','videojuegos'].includes(cat);
+        const elId = isSubcat ? ('laminas3d-' + cat) : (cat + '-content');
+        const el = document.getElementById(elId);
+
         if (el) el.innerHTML = '<p class="loading-msg">Cargando...</p>';
 
         const files = MANIFEST[cat] || [];
@@ -252,10 +254,10 @@
         let html = '<div class="product-grid">';
         for (const file of files) {
             const data = PRODUCT_DATA[file] || { name: file, price: '' };
-            const imgUrl = `${IMAGES_BASE}/${cat}/${file}.png`;
+            const imgUrl = IMAGES_BASE + '/' + cat + '/' + file + '.png';
             html += `
             <div class="product-card">
-                <img class="product-image" src="${imgUrl}" alt="${data.name}" onclick="openImgModal('${imgUrl}','${data.name}','${data.price}')" onerror="this.style.display='none'">
+                <img class="product-image" src="${imgUrl}" alt="${data.name}" onclick="openImgModal('${imgUrl}','${data.name}','${data.price}')" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 260 260%22><rect fill=%22%2312121a%22 width=%22260%22 height=%22260%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2300f0ff%22 font-family=%22sans-serif%22 font-size=%2214%22>${data.name}</text></svg>'">
                 <div class="product-info">
                     <h3>${data.name}</h3>
                     <div class="product-footer">
